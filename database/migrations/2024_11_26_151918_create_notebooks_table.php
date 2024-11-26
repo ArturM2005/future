@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('notebooks', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable(false);
+            $table->string('company')->nullable();
+            $table->string('number')->unique()->nullable(false);
+            $table->string('email')->unique()->nullable(false);
+            $table->date('date_of_birth')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
