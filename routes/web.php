@@ -6,6 +6,6 @@ use App\Models\Notebook;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('api/v1/notebook', function () {
+Route::get('api/v1/notebooks', function () {
     return Notebook::all();
 });
