@@ -9,4 +9,13 @@ class Notebook extends Model
 {
     /** @use HasFactory<\Database\Factories\NotebookFactory> */
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'company',
+        'number',
+        'date_of_birth',
+        'image'
+    ];
 }
