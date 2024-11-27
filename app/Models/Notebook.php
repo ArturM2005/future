@@ -12,7 +12,6 @@ class Notebook extends Model
     protected $fillable = [
         'name',
         'email',
-        'password',
         'company',
         'number',
         'date_of_birth',
