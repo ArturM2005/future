@@ -21,6 +21,19 @@ class NotebookController extends Controller
     public function store(Request $request)
     {
         $notebook = new Notebook();
+        if ($request->has('name')) {
+            $notebook->name = $request->input('name');
+        }
+        if ($request->has('number')) {
+            $notebook->number = $request->input('number');
+        }
+        if ($request->has('email')) {
+            $notebook->email = $request->input('email');
+        }
+        $notebook->company = $request->input('company');
+        $notebook->email = $request->input('email');
+        $notebook->image = $request->input('image');
+        $notebook->save();
     }
 
     /**
