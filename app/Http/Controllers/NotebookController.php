@@ -65,7 +65,13 @@ class NotebookController extends Controller
             'image' => 'nullable|url|max:255',
 
         ]);
-        $notebook->save();
+        $notebook->update($validated);
+
+        // Если нужно, можно вернуть успешный ответ
+        return response()->json([
+            'message' => 'Model updated successfully',
+            'data' => $notebook
+        ]);
     }
 
     /**
