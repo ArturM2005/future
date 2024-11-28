@@ -12,8 +12,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->validateCsrfTokens(except: [
-            'https:versera.ru/api/v1/notebooks',
-            'https:versera.ru/api/v1/notebooks/*',
+            'localhost:8080/api/v1/notebooks/',
+            'localhost:8080/api/v1/notebooks/*',
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
