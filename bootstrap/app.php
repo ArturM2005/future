@@ -12,8 +12,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->validateCsrfTokens(except: [
-            'localhost:8080/api/v1/notebooks/',
-            'localhost:8080/api/v1/notebooks/*',
+            'api/*',
+            'api/v1/notebooks/*',
+            'api/v1/notebooks',
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
