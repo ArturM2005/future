@@ -23,12 +23,18 @@ class NotebookController extends Controller
         $notebook = new Notebook();
         if ($request->has('name')) {
             $notebook->name = $request->input('name');
+        } else {
+            return "Ошибка";
         }
         if ($request->has('number')) {
             $notebook->number = $request->input('number');
+        } else {
+            return "Ошибка";
         }
         if ($request->has('email')) {
             $notebook->email = $request->input('email');
+        } else {
+            return "Ошибка";
         }
         if ($request->has('company')) {
             $notebook->email = $request->input('company');
@@ -48,6 +54,9 @@ class NotebookController extends Controller
      */
     public function show($id)
     {
+        if(!Notebook::find($id)) {
+            return "Ошибка";
+        }
         return Notebook::find($id);
     }
 
@@ -56,6 +65,9 @@ class NotebookController extends Controller
      */
     public function update($id, Request $request)
     {
+        if(!Notebook::find($id)) {
+            return "Ошибка";
+        }
         $data = $request->all();
 
         $notebook = Notebook::find($id);
@@ -73,7 +85,10 @@ class NotebookController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy($id)
-    {
+    {   
+        if(!Notebook::find($id)) {
+            return "Ошибка";
+        }
         $notebook = Notebook::find($id);
         $notebook->delete();
     }
