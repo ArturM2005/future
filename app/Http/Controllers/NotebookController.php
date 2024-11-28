@@ -62,8 +62,9 @@ class NotebookController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Notebook $notebook)
+    public function destroy($id)
     {
-        //
+        $notebook = Notebook::find($id);
+        $notebook->delete();
     }
 }
