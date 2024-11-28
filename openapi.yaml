@@ -77,7 +77,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
     delete:
-      summary: Метод получения Notebook по id
+      summary: Метод удаления Notebook по id
       tags:
         - Notebooks
       operationId: deleteUniqueNotebook
@@ -94,6 +94,38 @@ paths:
           description: Удаление Notebook по переданному id прошло успешно
           content:
             application/json: {}
+        'default':
+          description: Ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: Метод обновления Notebook
+      tags:
+        - Notebooks
+      operationId: updateNotebook
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Идентификатор Notebook
+          schema:
+            type: string
+          example: 10
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Notebook"
+      responses:
+        '200':
+          description: Notebook успешно обновлён
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Notebook"
         'default':
           description: Ошибка
           content:
