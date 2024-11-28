@@ -54,26 +54,19 @@ class NotebookController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update($id, Request $request)
     {
-        $id = $request->query('id');
+        $data = $request->all();
+
         $notebook = Notebook::find($id);
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'number' => 'required|integer|max:255',
-            'email' => 'required|email|max:255',
-            'company' => 'nullable|string|max:255',
-            'date_of_birth' => 'nullable|date|max:255',
-            'image' => 'nullable|url|max:255',
 
-        ]);
-        $notebook->update($validated);
+        if (!$notebook) {
+            return response()->json(['message' => 'Post not found'], 404);
+        }
 
-        // Если нужно, можно вернуть успешный ответ
-        return response()->json([
-            'message' => 'Model updated successfully',
-            'data' => $notebook
-        ]);
+        $notebook->update($data);
+
+        return response()->json($notebook);
     }
 
     /**
