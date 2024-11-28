@@ -54,8 +54,9 @@ class NotebookController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Notebook $notebook)
+    public function update(Request $request, $id)
     {
+        $notebook = Notebook::find($id);
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'number' => 'required|integer|max:255',
