@@ -8,3 +8,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('api/v1/notebook', [NotebookController::class, 'index']);
+Route::get('api/v1/notebook/{id}', [NotebookController::class, 'show']);
