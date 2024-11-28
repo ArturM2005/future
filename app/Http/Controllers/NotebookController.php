@@ -20,15 +20,15 @@ class NotebookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $notebook = new Notebook();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Notebook $notebook)
+    public function show($id)
     {
-        //
+        return Notebook::find($id);
     }
 
     /**
