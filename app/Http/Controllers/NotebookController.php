@@ -30,9 +30,16 @@ class NotebookController extends Controller
         if ($request->has('email')) {
             $notebook->email = $request->input('email');
         }
-        $notebook->company = $request->input('company');
-        $notebook->email = $request->input('email');
-        $notebook->image = $request->input('image');
+        if ($request->has('company')) {
+            $notebook->email = $request->input('company');
+        } else {
+            $notebook->company = NULL;
+        }
+        if ($request->has('image')) {
+            $notebook->email = $request->input('image');
+        } else {
+            $notebook->image = NULL;
+        }
         $notebook->save();
     }
 
