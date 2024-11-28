@@ -1,0 +1,148 @@
+openapi: 3.0.0
+info:
+  title: Notebooks API
+  version: 0.0.1
+servers:  
+- url: http://localhost:8080/api/v1/
+  description: Dev server
+paths:
+  /notebooks:
+    get:
+      summary: Метод получения всех Notebooks
+      tags:
+        - Notebooks
+      operationId: getAllNotebooks
+      responses:
+        '200':
+          description: Запрос выполнен успешно
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Notebooks"
+        'default':
+          description: Ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: Метод добавления нового Notebook
+      tags:
+        - Notebooks
+      operationId: createNewNotebook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Notebook"
+      responses:
+        '200':
+          description: Новый Notebook успешно создан
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Notebook"
+        'default':
+          description: Ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /notebooks/{id}:
+    get:
+      summary: Метод получения Notebook по id
+      tags:
+        - Notebook
+      operationId: getUniqueNotebook
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Идентификатор Notebook
+          schema:
+            type: string
+          example: 10
+      responses:
+        '200':
+          description: Запрос выполнен успешно по конкретному Notebook
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Notebook"
+        'default':
+          description: Ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      summary: Метод получения Notebook по id
+      tags:
+        - Notebook
+      operationId: deleteUniqueNotebook
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Идентификатор Notebook
+          schema:
+            type: string
+          example: 10
+      responses:
+        '200':
+          description: Удаление Notebook по переданному id прошло успешно
+          content:
+            application/json: {}
+        'default':
+          description: Ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    Notebook:
+      type: object
+      required:
+        - name
+        - number
+        - email
+      properties:
+        id:
+          type: string
+          example: 1
+        name:
+          type: string
+          example: First
+        company:
+          type: string
+          example: BigCompany
+        number:
+          type: string
+          example: 999-999-999
+        email:
+          type: string
+          example: a@mail.com
+        date_of_birth:
+          type: string
+          example: 1979-08-25
+          format: 2000-12-12
+        image:
+          type: string
+          example: /image/1.png
+    Notebooks:
+      type: array
+      items: 
+        $ref: "#/components/schemas/Notebook"
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+        message: 
+          type: string
+          
