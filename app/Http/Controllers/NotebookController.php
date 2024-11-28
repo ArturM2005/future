@@ -56,21 +56,15 @@ class NotebookController extends Controller
      */
     public function update(Request $request, Notebook $notebook)
     {
-        if ($request->has('name')) {
-            $notebook->name = $request->input('name');
-        }
-        if ($request->has('number')) {
-            $notebook->number = $request->input('number');
-        }
-        if ($request->has('email')) {
-            $notebook->email = $request->input('email');
-        }
-        if ($request->has('company')) {
-            $notebook->email = $request->input('company');
-        }
-        if ($request->has('image')) {
-            $notebook->email = $request->input('image');
-        }
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'number' => 'required|integer|max:255',
+            'email' => 'required|email|max:255',
+            'company' => 'nullable|string|max:255',
+            'date_of_birth' => 'nullable|date|max:255',
+            'image' => 'nullable|url|max:255',
+
+        ]);
         $notebook->save();
     }
 
