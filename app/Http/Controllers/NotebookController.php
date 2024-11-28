@@ -12,7 +12,7 @@ class NotebookController extends Controller
      */
     public function index()
     {
-        return "{Notebook::all()}" . "{csrf-token()}";
+        return Notebook::all();
     }
 
     /**
