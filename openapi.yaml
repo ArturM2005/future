@@ -53,7 +53,7 @@ paths:
     get:
       summary: Метод получения Notebook по id
       tags:
-        - Notebook
+        - Notebooks
       operationId: getUniqueNotebook
       parameters:
         - name: id
@@ -79,7 +79,7 @@ paths:
     delete:
       summary: Метод получения Notebook по id
       tags:
-        - Notebook
+        - Notebooks
       operationId: deleteUniqueNotebook
       parameters:
         - name: id
