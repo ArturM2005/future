@@ -20,33 +20,16 @@ class NotebookController extends Controller
      */
     public function store(Request $request)
     {
-        $notebook = new Notebook();
-        if ($request->has('name')) {
-            $notebook->name = $request->input('name');
-        } else {
-            return "Ошибка";
-        }
-        if ($request->has('number')) {
-            $notebook->number = $request->input('number');
-        } else {
-            return "Ошибка";
-        }
-        if ($request->has('email')) {
-            $notebook->email = $request->input('email');
-        } else {
-            return "Ошибка";
-        }
-        if ($request->has('company')) {
-            $notebook->email = $request->input('company');
-        } else {
-            $notebook->company = NULL;
-        }
-        if ($request->has('image')) {
-            $notebook->email = $request->input('image');
-        } else {
-            $notebook->image = NULL;
-        }
-        $notebook->save();
+        $notebook = $request->validate([
+            'name' => 'string|required',
+            'number' => 'string|required',
+            'email' => 'string|required',
+            'company' => 'string',
+            'image' => 'string',
+
+        ]);
+        
+        Notebook::create($notebook);
     }
 
     /**
